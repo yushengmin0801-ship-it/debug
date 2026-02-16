@@ -1,0 +1,16 @@
+{
+  "name": "Calculator Project",
+  "portsAttributes": {
+    "3000": {
+      "label": "Frontend (Vue)",
+      "onAutoForward": "notify",
+      "visibility": "public"
+    },
+    "8080": {
+      "label": "Backend (Spring Boot)",
+      "onAutoForward": "notify",
+      "visibility": "public"
+    }
+  },
+  "forwardPorts": [3000, 8080]
+}
