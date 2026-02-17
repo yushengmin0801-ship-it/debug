@@ -36,17 +36,44 @@
       <div v-if="error" class="mt-4 text-red-500 text-xs text-center">
         {{ error }}
       </div>
+
+      <!-- History Section -->
+      <div class="mt-6 border-t border-gray-200 pt-4">
+        <h3 class="font-bold text-gray-700 mb-2 text-sm uppercase tracking-wide">History</h3>
+        <ul class="text-sm text-gray-600 space-y-2 max-h-40 overflow-y-auto">
+          <li v-for="(item, index) in history" :key="index" class="bg-gray-50 p-2 rounded-lg border border-gray-100 flex justify-between">
+             <span>{{ item }}</span>
+          </li>
+          <li v-if="history.length === 0" class="text-gray-400 italic text-xs">No history yet</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const display = ref('0')
 const previousExpression = ref('')
 const loading = ref(false)
 const error = ref('')
+const history = ref([])
+
+const fetchHistory = async () => {
+  try {
+    const res = await fetch('http://localhost:8080/api/history')
+    if (res.ok) {
+      history.value = await res.json()
+    }
+  } catch (e) {
+    console.error("Failed to fetch history", e)
+  }
+}
+
+onMounted(() => {
+  fetchHistory()
+})
 
 const append = (char) => {
   if (display.value === '0' && !['/', '*', '-', '+', '.', '%'].includes(char)) {
@@ -80,7 +107,7 @@ const calculate = async () => {
   previousExpression.value = display.value
   
   try {
-    const response = await fetch('https://curly-space-spoon-wr6v5654jwj5h57x9-8080.app.github.dev/api/calculate', {
+    const response = await fetch('http://localhost:8080/api/calculate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -98,6 +125,7 @@ const calculate = async () => {
     
     const data = await response.json()
     display.value = data.result.toString()
+    await fetchHistory() // Refresh history
   } catch (err) {
     error.value = 'Calculation failed: ' + err.message
     console.error(err)

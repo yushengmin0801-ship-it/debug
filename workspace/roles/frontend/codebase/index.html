@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>古典五子棋 - Django+Vue版</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        body { background: #F5E6CA; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: serif; touch-action: none; }
+        .title { font-size: 2.5rem; color: #2C1E11; margin-bottom: 10px; }
+        .board-container { background: #8d6e63; padding: 10px; border-radius: 4px; border: 6px solid #5d4037; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        canvas { background: #d2b48c; cursor: pointer; box-shadow: inset 0 0 20px rgba(0,0,0,0.2); }
+        .controls { margin-top: 20px; display: flex; gap: 15px; }
+        .btn { background: #b71c1c; color: #fff; padding: 12px 24px; border: none; border-radius: 4px; font-size: 1.2rem; cursor: pointer; font-family: inherit; }
+        .status { margin-bottom: 10px; font-size: 1.2rem; color: #5d4037; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="title">五子連珠 · 影音版</div>
+        <div class="status">{{ statusMsg }}</div>
+        <div class="board-container">
+            <canvas id="board" width="330" height="330" @mousedown="handleClick"></canvas>
+        </div>
+        <div class="controls">
+            <button class="btn" @click="undo">悔棋</button>
+            <button class="btn" @click="reset">重開</button>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, onMounted } = Vue;
+        createApp({
+            setup() {
+                const statusMsg = ref('清風徐來 · 執黑先行');
+                const size = 15;
+                const cellSize = 330 / size;
+                let board = ref(Array(size).fill().map(() => Array(size).fill(0)));
+                let history = ref([]);
+                let active = ref(true);
+                let ctx = null;
+
+                const draw = () => {
+                    if (!ctx) return;
+                    ctx.clearRect(0, 0, 330, 330);
+                    ctx.strokeStyle = '#3e2723';
+                    for(let i=0; i<size; i++) {
+                        ctx.beginPath(); ctx.moveTo(cellSize/2, cellSize/2 + i*cellSize); ctx.lineTo(330-cellSize/2, cellSize/2 + i*cellSize); ctx.stroke();
+                        ctx.beginPath(); ctx.moveTo(cellSize/2 + i*cellSize, cellSize/2); ctx.lineTo(cellSize/2 + i*cellSize, 330-cellSize/2); ctx.stroke();
+                    }
+                    board.value.forEach((r, ri) => r.forEach((v, ci) => {
+                        if(v !== 0) {
+                            const x = cellSize/2 + ci*cellSize, y = cellSize/2 + ri*cellSize;
+                            ctx.beginPath(); ctx.arc(x, y, 10, 0, 7);
+                            ctx.fillStyle = v === 1 ? '#000' : '#fff'; ctx.fill(); ctx.stroke();
+                        }
+                    }));
+                };
+
+                const handleClick = async (e) => {
+                    if (!active.value) return;
+                    const rect = e.target.getBoundingClientRect();
+                    const c = Math.floor((e.clientX - rect.left) / cellSize);
+                    const r = Math.floor((e.clientY - rect.top) / cellSize);
+                    if (r >= 0 && r < size && c >= 0 && c < size && board.value[r][c] === 0) {
+                        board.value[r][c] = 1;
+                        history.value.push({r, c});
+                        draw();
+                        statusMsg.value = '电脑思考中...';
+                        active.value = false;
+                        try {
+                            const res = await axios.post('https://curly-space-spoon-wr6v5654jwj5h57x9-8000.app.github.dev/api/ai-move/', { board: board.value });
+                            const { row, col } = res.data;
+                            board.value[row][col] = 2;
+                            history.value.push({r: row, c: col});
+                            draw();
+                            statusMsg.value = '请落子';
+                            active.value = true;
+                        } catch (err) {
+                            statusMsg.value = 'Django 接口连接异常';
+                            active.value = true;
+                        }
+                    }
+                };
+
+                const undo = () => {
+                    if (history.value.length < 2) return;
+                    for(let i=0; i<2; i++) {
+                        const last = history.value.pop();
+                        board.value[last.r][last.c] = 0;
+                    }
+                    draw();
+                };
+
+                const reset = () => location.reload();
+
+                onMounted(() => {
+                    const canvas = document.getElementById('board');
+                    ctx = canvas.getContext('2d');
+                    draw();
+                });
+
+                return { statusMsg, handleClick, undo, reset };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
