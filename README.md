@@ -1,15 +1,13 @@
-# Web Calculator Project
+# Elite AI R&D Team - DNA Repository
 
-A full-stack calculator application built with Spring Boot and Vue.js.
+This repository serves as the backup and DNA storage for the OpenClaw-based AI development team.
 
-## Tech Stack
-- **Frontend**: Vue 3 + Vite + Tailwind CSS
-- **Backend**: Java 17 + Spring Boot 3.x
+## Repository Structure
+- `/DNA/workspaces/`: Contains the full context, SOUL, and SKILLS for each agent (PM, Product, UI, Backend, Frontend, QA).
+- `/DNA/shared/`: Shared project milestones, stakeholder preferences, and collaboration protocols.
 
-## Project Structure
-- `calculator/backend`: Spring Boot backend service
-- `calculator/frontend`: Vue.js frontend application
+## Status
+- **Team State**: Fully Optimized (Strategic Visionary Mode)
+- **Active Project**: Gomoku Zen Ultimate (Running in Codespace)
 
-## Setup & Run
-1. Backend: `cd calculator/backend && mvn spring-boot:run`
-2. Frontend: `cd calculator/frontend && npm run dev`
+*Note: This repository is managed by the Project Director Agent.*

@@ -1,0 +1,63 @@
+
+> frontend@0.0.0 dev
+> vite --host 0.0.0.0 --port 3000
+
+11:37:08 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
+
+  VITE v7.3.1  ready in 1528 ms
+
+  ➜  Local:   http://localhost:3000/
+  ➜  Network: http://10.0.10.230:3000/
+11:37:46 AM [vite] (client) Pre-transform error: [postcss] It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+  Plugin: vite:css
+  File: /home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/src/App.vue?vue&type=style&index=0&lang.css:undefined:NaN
+11:37:46 AM [vite] (client) Pre-transform error: [postcss] It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+  Plugin: vite:css
+  File: /home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/src/style.css:undefined:NaN
+11:37:47 AM [vite] Internal server error: [postcss] It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+  Plugin: vite:css
+  File: /home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/src/style.css:undefined:NaN
+      at lt (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/tailwindcss/dist/lib.js:38:1643)
+      at LazyResult.runOnRoot (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/postcss/lib/lazy-result.js:361:16)
+      at LazyResult.runAsync (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/postcss/lib/lazy-result.js:290:26)
+      at async runPostCSS (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:30145:19)
+      at async compilePostCSS (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:30129:6)
+      at async compileCSS (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:30059:26)
+      at async TransformPluginContext.handler (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:29592:54)
+      at async EnvironmentPluginContainer.transform (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:28797:14)
+      at async loadAndTransform (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:22670:26)
+      at async viteTransformMiddleware (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:24542:20)
+11:37:47 AM [vite] Internal server error: [postcss] It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+  Plugin: vite:css
+  File: /home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/src/App.vue?vue&type=style&index=0&lang.css:undefined:NaN
+      at lt (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/tailwindcss/dist/lib.js:38:1643)
+      at LazyResult.runOnRoot (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/postcss/lib/lazy-result.js:361:16)
+      at LazyResult.runAsync (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/postcss/lib/lazy-result.js:290:26)
+      at LazyResult.async (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/postcss/lib/lazy-result.js:192:30)
+      at LazyResult.then (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/postcss/lib/lazy-result.js:436:17)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+11:38:18 AM [vite] Internal server error: [postcss] It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+  Plugin: vite:css
+  File: /home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/src/style.css:undefined:NaN
+      at lt (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/tailwindcss/dist/lib.js:38:1643)
+      at LazyResult.runOnRoot (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/postcss/lib/lazy-result.js:361:16)
+      at LazyResult.runAsync (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/postcss/lib/lazy-result.js:290:26)
+      at async runPostCSS (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:30145:19)
+      at async compilePostCSS (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:30129:6)
+      at async compileCSS (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:30059:26)
+      at async TransformPluginContext.handler (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:29592:54)
+      at async EnvironmentPluginContainer.transform (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:28797:14)
+      at async loadAndTransform (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:22670:26)
+      at async viteTransformMiddleware (file:///home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/vite/dist/node/chunks/config.js:24542:20)
+11:38:18 AM [vite] Internal server error: [postcss] It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+  Plugin: vite:css
+  File: /home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/src/App.vue?vue&type=style&index=0&lang.css:undefined:NaN
+      at lt (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/tailwindcss/dist/lib.js:38:1643)
+      at LazyResult.runOnRoot (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/postcss/lib/lazy-result.js:361:16)
+      at LazyResult.runAsync (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/postcss/lib/lazy-result.js:290:26)
+      at LazyResult.async (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/postcss/lib/lazy-result.js:192:30)
+      at LazyResult.then (/home/codespace/.openclaw/workspaces/project_manager/gomoku-v3/frontend/node_modules/postcss/lib/lazy-result.js:436:17)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+11:39:18 AM [vite] (client) hmr update /src/App.vue
+11:42:09 AM [vite] vite.config.js changed, restarting server...
+11:42:09 AM [vite] server restarted.
